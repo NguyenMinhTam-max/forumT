@@ -30,12 +30,12 @@ const options = [
       {
         icon: Comment,
         title: 'Chủ đề',
-        link: '/admin/products',
+        link: '/admin/threads',
       },
       {
         icon: AddComment,
         title: 'Bài viết',
-        link: '/admin/products',
+        link: '/admin/posts',
       },
     ],
   },
@@ -52,12 +52,12 @@ const options = [
       {
         icon: Person,
         title: 'User',
-        link: '/admin/user/sellers',
+        link: '/admin/user/users',
       },
       {
         icon: LocalLibrary,
         title: 'Mod',
-        link: '/admin/user/bidders',
+        link: '/admin/user/mods',
       },
     ],
   },

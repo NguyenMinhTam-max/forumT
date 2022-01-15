@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     // minHeight: '100vh',
     // maxHeight: '-webkit-fill-available',
   },
- 
+
   section: {
     borderRadius: theme.shape.borderRadius,
     background: '#F4FFE7',
@@ -147,10 +147,10 @@ const useStyles = makeStyles((theme) => ({
   tableHead: {
     fontWeight: 'bold',
     color: 'red',
-    background:"#F4FFE7"
+    background: "#F4FFE7"
   },
-  colorBackground:{
-    background:"#F4FFE7"
+  colorBackground: {
+    background: "#F4FFE7"
   }
 }));
 const UserManager = (props) => {
@@ -175,11 +175,16 @@ const UserManager = (props) => {
   const [text, setText] = useState('');
 
   const openAddModalHandler = () => {
-    setOpenAddModal(true);
+
+  };
+
+  const openRejectSelModalHandler = (id) => {
+    setSelectedId(id);
+    setOpenAddModal(false);
     setOpenUpdateModal(false);
     setOpenDeleteModal(false);
     setOpenAcceptModal(false);
-    setOpenRejectModal(false);
+    setOpenRejectModal(true);
   };
 
   const openUpdateModalHandler = (item) => {
@@ -209,14 +214,7 @@ const UserManager = (props) => {
     setOpenRejectModal(false);
   };
 
-  const openRejectSelModalHandler = (id) => {
-    setSelectedId(id);
-    setOpenAddModal(false);
-    setOpenUpdateModal(false);
-    setOpenDeleteModal(false);
-    setOpenAcceptModal(false);
-    setOpenRejectModal(true);
-  };
+
 
   const closeModalHandler = () => {
     setOpenAddModal(false);
@@ -235,8 +233,8 @@ const UserManager = (props) => {
     try {
       await dispatch(deleteUser(selectedId)).unwrap();
       const limit = 10;
-      const role  = filter;
-      const response = await dispatch(getUserList({page, limit, role})).unwrap();
+      const role = filter;
+      const response = await dispatch(getUserList({ page, limit, role })).unwrap();
       setUserInfo(response);
       userList = userList.filter(
         (user) => user.userId !== selectedId
@@ -250,13 +248,13 @@ const UserManager = (props) => {
     closeModalHandler();
   };
 
-  const acceptSelModalHandler = async () =>{
+  const acceptSelModalHandler = async () => {
     if (!selectedId) return;
     try {
       await dispatch(acceptSel(selectedId)).unwrap();
       const limit = 10;
-      const role  = filter;
-      const response = await dispatch(getUserList({page, limit, role})).unwrap();
+      const role = filter;
+      const response = await dispatch(getUserList({ page, limit, role })).unwrap();
       setUserInfo(response);
       setText('Cập nhật thành công!!!');
       setShowSuccess(true);
@@ -267,13 +265,13 @@ const UserManager = (props) => {
     closeModalHandler();
   }
 
-  const rejectSelModalHandler = async () =>{
+  const rejectSelModalHandler = async () => {
     if (!selectedId) return;
     try {
       await dispatch(rejectSel(selectedId)).unwrap();
       const limit = 10;
-      const role  = filter;
-      const response = await dispatch(getUserList({page, limit, role})).unwrap();
+      const role = filter;
+      const response = await dispatch(getUserList({ page, limit, role })).unwrap();
       setUserInfo(response);
       setText('Cập nhật thành công!!!');
       setShowSuccess(true);
@@ -288,8 +286,8 @@ const UserManager = (props) => {
     async (page = 1) => {
       try {
         const limit = 10;
-        const role  = filter;
-        const response = await dispatch(getUserList({page, limit, role})).unwrap();
+        const role = filter;
+        const response = await dispatch(getUserList({ page, limit, role })).unwrap();
         setUserInfo(response);
       } catch (err) {
         setError(err);
@@ -319,211 +317,206 @@ const UserManager = (props) => {
 
   const handleVisible = useCallback(() => {
     if (showFailed === true || showSuccess === true) {
-        setTimeout(() => {
-            setShowFailed(false)
-            setShowSuccess(false)
-        }, 5000);
+      setTimeout(() => {
+        setShowFailed(false)
+        setShowSuccess(false)
+      }, 5000);
     }
   }, [showFailed, showSuccess]);
 
   useEffect(() => {
-      handleVisible();
+    handleVisible();
   }, [handleVisible]);
 
   return (
     <>
       <div className={classes.root}>
         <Container>
-            <AddProduct isOpen={openAddModal} onClose={closeModalHandler} />
-            <UpdateProduct
-              itemInfo={selectedItem}
-              isOpen={openUpdateModal}
-              onClose={closeModalHandler}
-            />
-            <ModalConfirmDelete
-              title="Xoá người dùng"
-              isOpen={openDeleteModal}
-              onClose={closeModalHandler}
-              onConfirm={deleteUserHandler}
-            />
-            <ModalConfirm
-              title="Đồng ý yêu cầu nâng cấp Seller?"
-              isOpen={openAcceptModal}
-              onClose={closeModalHandler}
-              onConfirm={acceptSelModalHandler}
-            />
-            <ModalConfirm
-              title="Huỷ yêu cầu nâng cấp/ hạ cấp Seller?"
-              isOpen={openRejectModal}
-              onClose={closeModalHandler}
-              onConfirm={rejectSelModalHandler}
-            />
+          <AddProduct isOpen={openAddModal} onClose={closeModalHandler} />
+          <UpdateProduct
+            itemInfo={selectedItem}
+            isOpen={openUpdateModal}
+            onClose={closeModalHandler}
+          />
+          <ModalConfirmDelete
+            title="Xoá người dùng"
+            isOpen={openDeleteModal}
+            onClose={closeModalHandler}
+            onConfirm={deleteUserHandler}
+          />
+          <ModalConfirm
+            title="Đồng ý yêu cầu nâng cấp Mod?"
+            isOpen={openAcceptModal}
+            onClose={closeModalHandler}
+            onConfirm={acceptSelModalHandler}
+          />
+          <ModalConfirm
+            title="Đồng ý hạ cấp thành user?"
+            isOpen={openRejectModal}
+            onClose={closeModalHandler}
+            onConfirm={rejectSelModalHandler}
+          />
         </Container>
       </div>
 
       <div className={classes.section}>
         <Typography variant="h5" className={classes.title}>
-        Quản Lý Người Dùng ({filter === Role.Admin?'Admin':filter === Role.Seller?'User':'Mod'})
+          Quản Lý Người Dùng ({filter === Role.Admin ? 'Admin' : filter === Role.Mod ? 'User' : 'Mod'})
         </Typography>
         <div className={classes.filter}>
           <div className={classes.search}>
             <SearchInput />
           </div>
-        {filter === Role.Admin && (
-          <div className={classes.addButton}>
-            <Button
-              startIcon={<Add />}
-              variant="contained"
-              color="primary"
-              className={classes.addButton}
-              onClick={openAddModalHandler}>
-              Mới
-            </Button>
-          </div>
-        )}
+          {filter === Role.Admin && (
+            <div className={classes.addButton}>
+              <Button
+                startIcon={<Add />}
+                variant="contained"
+                color="primary"
+                className={classes.addButton}
+                onClick={openAddModalHandler}>
+                Mới
+              </Button>
+            </div>
+          )}
         </div>
       </div>
-      
+
       <div className={classes.bodytable}>
         <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
-                <Alert.Heading style={{textAlign: "center"}}>{text}</Alert.Heading>
-            </Alert>
-            <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-                <Alert.Heading style={{textAlign: "center"}}>{text}</Alert.Heading>
+          <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
+        </Alert>
+        <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
+          <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
         </Alert>
         <TableContainer component={Paper}>
-              <Table aria-label="a dense table">
-                <TableHead>
-                  <TableRow className={classes.tableHead}>
-                    <TableCell align="center">STT</TableCell>
-                    {/* <TableCell align="center">ID</TableCell> */}
-                    <TableCell align="center">Họ & Tên</TableCell>
-                    <TableCell align="center">Ảnh đại diện</TableCell>
-                    <TableCell align="center">Email</TableCell>
-                    <TableCell align="center">Điện thoại</TableCell>
-                    {filter === Role.Bidder && (
-                      <>
-                        <TableCell align="center">Số lượt thích</TableCell>
-                        <TableCell align="center">Số lượt Không thích</TableCell>
-                        <TableCell align="center">Nâng cấp Seller</TableCell>
-                      </>
-                    )}
-                    {filter === Role.Seller && (
-                      <>
-                        <TableCell align="center">Hết hạn Seller</TableCell>
-                        <TableCell align="center">Số lượt thích</TableCell>
-                        <TableCell align="center">Số lượt Không thích</TableCell>
-                        <TableCell align="center">Hạ cấp Seller</TableCell>
-                      </>
-                    )}
-                    <TableCell align="center">Last Modified</TableCell>
-                    <TableCell align="center">Options</TableCell>
-                  </TableRow>
-                </TableHead>
-        {loading ? ( <TableLoading /> ): error?.length > 0 ?
-          (
-          <TableError message={error} onTryAgain={getUserListHandler} />
-        ) : userList?.length > 0 ? (
-          <>
-                <TableBody>
-                  {userList?.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell component="th" scope="row" align="center"> {index + 1 + (page - 1)*10} </TableCell>
-                      {/* <TableCell align="center">{row?.accId}</TableCell> */}
-                      <TableCell align="center">{row?.accFullName}</TableCell>
-                      <TableCell align="center">
-                        <img
-                          onError={(e)=>{e.target.onerror = null; e.target.src=errImg}}
-                          src={row?.accAvatar}
-                          alt={row?.accFullName}
-                          style={{ width: 100, height: 80, objectFit: 'cover' }}
-                        />
-                      </TableCell>
-                      <TableCell align="center">{row.accEmail}</TableCell>
-                      <TableCell align="center">{row.accPhoneNumber}</TableCell>
-                      {filter === Role.Bidder && (
-                      <>
-                        <TableCell align="center">{row?.accLikeBidder || 0}</TableCell>
-                        <TableCell align="center">{row?.accDisLikeBidder || 0}</TableCell>
-                        <TableCell align="center">
-                          { row?.accIsUpgrade === 1 && (
-                            <>
-                              <Button 
-                                variant="outlined"
-                                startIcon={<CheckBoxIcon style={{ align:"center", marginLeft: 10 }}/>}  
-                                onClick={() => openAcceptSelModalHandler(row.accId)}
-                                fontSize="small"
-                                style={{ width: '40px', marginLeft: 5, cursor: 'pointer', color: 'green', borderColor: 'green', "& :hover": {backgroundColor: "red"} }}
+          <Table aria-label="a dense table">
+            <TableHead>
+              <TableRow className={classes.tableHead}>
+                <TableCell align="center">STT</TableCell>
+                {/* <TableCell align="center">ID</TableCell> */}
+                <TableCell align="center">Họ & Tên</TableCell>
+                <TableCell align="center">Ảnh đại diện</TableCell>
+                <TableCell align="center">Email</TableCell>
+                <TableCell align="center">Điện thoại</TableCell>
+                {filter === Role.User && (
+                  <>
+                    <TableCell align="center">Tổng like</TableCell>
+                    <TableCell align="center">Tổng dislike</TableCell>
+                    <TableCell align="center">Chuyển thành Mod</TableCell>
+                  </>
+                )}
+                {filter === Role.Mod && (
+                  <>
+                    <TableCell align="center">Tổng like</TableCell>
+                    <TableCell align="center">Tổng dislike</TableCell>
+                    <TableCell align="center">Chuyển sang User</TableCell>
+                  </>
+                )}
+                <TableCell align="center">Last Modified</TableCell>
+                <TableCell align="center">Options</TableCell>
+              </TableRow>
+            </TableHead>
+            {loading ? (<TableLoading />) : error?.length > 0 ?
+              (
+                <TableError message={error} onTryAgain={getUserListHandler} />
+              ) : userList?.length > 0 ? (
+                <>
+                  <TableBody>
+                    {userList?.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell component="th" scope="row" align="center"> {index + 1 + (page - 1) * 10} </TableCell>
+                        {/* <TableCell align="center">{row?.accId}</TableCell> */}
+                        <TableCell align="center">{row?.accFullName}</TableCell>
+                        <TableCell align="center" style={{ width: 100, height: 100 }}>
+                          <img
+                            onError={(e) => { e.target.onerror = null; e.target.src = errImg }}
+                            src={row?.accAvatar}
+                            alt={row?.accFullName}
+                            style={{ width: "100%", height: "100%", objectFit: 'cover' }}
+                          />
+                        </TableCell>
+                        <TableCell align="center">{row.accEmail}</TableCell>
+                        <TableCell align="center">{row.accPhoneNumber}</TableCell>
+                        {filter === Role.User && (
+                          <>
+                            <TableCell align="center">{row?.accLikeUser || 0}</TableCell>
+                            <TableCell align="center">{row?.accDisLikeUser || 0}</TableCell>
+                            <TableCell align="center">
+                              {row?.accIsUpgrade === 1 && (
+                                <>
+                                  <Button
+                                    variant="outlined"
+                                    startIcon={<CheckBoxIcon style={{ align: "center", marginLeft: 10 }} />}
+                                    onClick={() => openAcceptSelModalHandler(row.accId)}
+                                    fontSize="small"
+                                    style={{ width: '40px', marginLeft: 5, cursor: 'pointer', color: 'green', borderColor: 'green', "& :hover": { backgroundColor: "red" } }}
+                                  // marginBottom={1}
+                                  >
+                                    {/* Xác nhận */}
+                                  </Button>
+                                  {/* <br></br> */}
+
+                                </>
+                              )}
+                            </TableCell>
+                          </>
+                        )}
+                        {filter === Role.Mod && (
+                          <>
+                            <TableCell align="center">{row?.accLikeMod || 0}</TableCell>
+                            <TableCell align="center">{row?.accDisLikeMod || 0}</TableCell>
+                            <TableCell align="center">
+                              <>
+                                <Button
+                                  variant="outlined"
+                                  startIcon={<CheckBoxIcon style={{ align: "center", marginLeft: 10 }} />}
+                                  onClick={() => openRejectSelModalHandler(row.accId)}
+                                  fontSize="small"
+                                  style={{ width: '40px', marginLeft: 5, cursor: 'pointer', color: 'green', borderColor: 'green', "& :hover": { backgroundColor: "red" } }}
                                 // marginBottom={1}
                                 >
-                                {/* Xác nhận */}
-                              </Button>
-                              {/* <br></br> */}
-                              <Button 
-                                variant="outlined" 
-                                startIcon={<CancelIcon style={{ align:"center", marginLeft: 10 }} />}
-                                onClick={() => openRejectSelModalHandler(row.accId)}
-                                fontSize="small"
-                                style={{width: '40px', marginLeft: 5, cursor: 'pointer', color: 'red', borderColor: 'red', hoverColor: 'blue' }}
-                                // marginTop={1}
-                                >
-                                {/* Huỷ */}
-                              </Button>
-                            </>
-                          ) }
-                        </TableCell>
-                      </>
-                    )}
-                    {filter === Role.Seller && (
-                      <>
-                        <TableCell align="center">{row?.accExpUpgrade || 'None'}</TableCell>
-                        <TableCell align="center">{row?.accLikeSeller || 0}</TableCell>
-                        <TableCell align="center">{row?.accDisLikeSeller || 0}</TableCell>
-                        <TableCell align="center">
-                              <Button 
-                                variant="outlined" 
-                                startIcon={<CancelIcon style={{ align:"center", marginLeft: 10 }} />}
-                                onClick={() => openRejectSelModalHandler(row.accId)}
-                                fontSize="small"
-                                style={{width: '40px', marginLeft: 5, cursor: 'pointer', color: 'red', borderColor: 'red', hoverColor: 'blue' }}
-                                >
-                              </Button>
-                        </TableCell>
-                      </>
-                    )}
-                      <TableCell align="center">{row?.accUpdatedDate}</TableCell>
-                      <TableCell align="center" style={{ minWidth: 150 }}>
-                        <Button 
-                          variant="outlined" 
-                          startIcon={<EditIcon
-                            fontSize="small"
-                            style={{ cursor: 'pointer', marginLeft: "10px" }}
-                          />}
-                          style={{ width: '40px', marginLeft: 5 }}
-                          fontSize="small"
-                          onClick={() => openUpdateModalHandler(row)}
-                          >
-                        </Button>
-                        <Button 
-                          variant="outlined" 
-                          startIcon={<DeleteIcon
-                            fontSize="small"
-                            style={{ cursor: 'pointer', marginLeft: "10px" }}
-                          />}
-                          style={{ width: '40px', marginLeft: 5 }}
-                          fontSize="small"
-                          onClick={() => openDeleteModalHandler(row.accId)}
-                          >
-                        </Button>
+                                  {/* Xác nhận */}
+                                </Button>
+                                {/* <br></br> */}
 
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-          </>
-          ) : (
-            <TableError message="Không có dữ liệu" onTryAgain={getUserListHandler} />
-          )}
+                              </>
+                            </TableCell>
+                          </>
+                        )}
+                        <TableCell align="center">{row?.accUpdatedDate}</TableCell>
+                        <TableCell align="center" style={{ minWidth: 150 }}>
+                          <Button
+                            variant="outlined"
+                            startIcon={<EditIcon
+                              fontSize="small"
+                              style={{ cursor: 'pointer', marginLeft: "10px", color: "white" }}
+                            />}
+                            style={{ width: '40px', marginLeft: 5, background: "#0F881B" }}
+                            fontSize="small"
+                            onClick={() => openUpdateModalHandler(row)}
+                          >
+                          </Button>
+                          <Button
+                            variant="outlined"
+                            startIcon={<DeleteIcon
+                              fontSize="small"
+                              style={{ cursor: 'pointer', marginLeft: "10px", color: "white" }}
+                            />}
+                            style={{ width: '40px', marginLeft: 5, background: "#88170F" }}
+                            fontSize="small"
+                            onClick={() => openDeleteModalHandler(row.accId)}
+                          >
+                          </Button>
+
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </>
+              ) : (
+                <TableError message="Không có dữ liệu" onTryAgain={getUserListHandler} />
+              )}
           </Table>
         </TableContainer>
       </div>

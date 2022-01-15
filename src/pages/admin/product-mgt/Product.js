@@ -19,10 +19,10 @@ import Pagination from '@material-ui/lab/Pagination';
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
+import EditIcon from '@material-ui/icons/Edit';
 import { uiActions } from '../../../reducers/ui';
 import SearchInput from '../../../components/UI/SearchInput';
 import DeleteIcon from '@material-ui/icons/Delete';
-import PreviewIcon from '@material-ui/icons/Visibility';
 import { deleteAuctionProduct, getAuctionProductList } from '../../../reducers/admin/product';
 import UpdateProduct from './UpdateProduct';
 import TableError from '../../../components/Table/TableError';
@@ -290,15 +290,11 @@ const ProductManager = (props) => {
             <TableHead>
               <TableRow className={classes.tableHead}>
                 <TableCell>STT</TableCell>
-                <TableCell>Tên sản phẩm</TableCell>
-                <TableCell>Hình ảnh</TableCell>
-                <TableCell>Danh mục</TableCell>
-                <TableCell>Giá khởi điểm</TableCell>
-                <TableCell>Bước giá</TableCell>
-                <TableCell>Hạn đấu giá</TableCell>
-                <TableCell>Tự động gia hạn</TableCell>
+                <TableCell>Tên chủ đề</TableCell>
+                <TableCell>Hình ảnh chủ đề</TableCell>
+                <TableCell>Chuyên mục</TableCell>
                 <TableCell>Ngày cập nhật cuối</TableCell>
-                <TableCell align="center">Options</TableCell>
+                <TableCell align="center">Thao tác</TableCell>
               </TableRow>
             </TableHead>
     {loading ? ( <TableLoading /> ): error?.length > 0 ?
@@ -341,11 +337,11 @@ const ProductManager = (props) => {
               <TableCell align="center" style={{ minWidth: 150 }}>
                 <Button 
                   variant="outlined" 
-                  startIcon={<PreviewIcon
+                  startIcon={<EditIcon
                     fontSize="small"
-                    style={{ cursor: 'pointer', marginLeft: "10px" }}
+                    style={{ cursor: 'pointer', marginLeft: "10px", color:"white" }}
                   />}
-                  style={{ width: '40px', marginLeft: 5 }}
+                  style={{ width: '40px', marginLeft: 5, background :"#0F881B"}}
                   fontSize="small"
                   onClick={() => openUpdateModalHandler(row)}
                   >
@@ -354,9 +350,9 @@ const ProductManager = (props) => {
                   variant="outlined" 
                   startIcon={<DeleteIcon
                     fontSize="small"
-                    style={{ cursor: 'pointer', marginLeft: "10px" }}
+                    style={{ cursor: 'pointer', marginLeft: "10px", color:"white"}}
                   />}
-                  style={{ width: '40px', marginLeft: 5 }}
+                  style={{ width: '40px', marginLeft: 5, background:"#88170F"}}
                   fontSize="small"
                   onClick={() => openDeleteModalHandler(row.prodId)}
                   >

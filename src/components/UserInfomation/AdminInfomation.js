@@ -38,11 +38,7 @@ const AdminInfomation = ({ avatar, name, position, user }) => {
   return (
     <div className={classes.root}>
       {/* <img src={avatar} alt={name} className={classes.avatar} /> */}
-      <UpdateProduct
-              itemInfo={selectedItem}
-              isOpen={openUpdateModal}
-              onClose={closeModalHandler}
-      />
+     
       <OverlayTrigger
         trigger={["click","hover"]}
         delay={{ show: 100, hide: 10000 }}
@@ -51,20 +47,14 @@ const AdminInfomation = ({ avatar, name, position, user }) => {
         className={classes.avatar}
       >
         {({ ref, ...triggerHandler }) => (
-          <Button
-            variant="light"
-            {...triggerHandler}
-            className="d-inline-flex align-items-center"
-            onClick={() => openUpdateModalHandler(user)}
-            className={classes.avatar}
-          >
+         
             <Image className={classes.avatar}
               ref={ref}
               // roundedCircle
               src={avatar} 
               alt={name}
             />
-          </Button>
+          
         )}
       </OverlayTrigger>
 

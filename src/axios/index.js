@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { history } from '../helpers';
-const baseURL = process.env.APP_BASE_URL || 'https://forumwebapp1.herokuapp.com';
+const baseURL = process.env.APP_BASE_URL || 'https://forumwebapp1.herokuapp.com/';
 
 axios.defaults.baseURL = baseURL;
 

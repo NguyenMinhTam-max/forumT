@@ -429,9 +429,9 @@ const CategoryManager = (props) => {//the first character of function always in 
                                 variant="outlined"
                                 startIcon={<EditIcon
                                   fontSize="small"
-                                  style={{ cursor: 'pointer', marginLeft: "10px" }}
+                                  style={{ cursor: 'pointer', marginLeft: "10px", color:"white" }}
                                 />}
-                                style={{ width: '40px', marginLeft: 5 }}
+                                style={{ width: '40px', marginLeft: 5, background :"#0F881B"}}
                                 fontSize="small"
                                 onClick={() => openUpdateModalHandler(row)}
                               >
@@ -440,9 +440,9 @@ const CategoryManager = (props) => {//the first character of function always in 
                                 variant="outlined"
                                 startIcon={<DeleteIcon
                                   fontSize="small"
-                                  style={{ cursor: 'pointer', marginLeft: "10px" }}
+                                  style={{ cursor: 'pointer', marginLeft: "10px", color:"white"}}
                                 />}
-                                style={{ width: '40px', marginLeft: 5 }}
+                                style={{ width: '40px', marginLeft: 5, background:"#88170F"}}
                                 fontSize="small"
                                 onClick={() => openDeleteModalHandler(row.cate_id)}
                               >

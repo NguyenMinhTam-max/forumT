@@ -149,27 +149,34 @@ export const adminRoutes = [
     }
   },
   {
-    path: '/admin/user/sellers',
+    path: '/admin/user/users',
     protected: true,
     exact: true,
     component: UserPage,
     roles: [Role.Admin],
     additional: {
-      filter: Role.Seller,
+      filter: Role.User,
     }
   },
   {
-    path: '/admin/user/bidders',
+    path: '/admin/user/mods',
     protected: true,
     exact: true,
     component: UserPage,
     roles: [Role.Admin],
     additional: {
-      filter: Role.Bidder,
+      filter: Role.Mod,
     }
   },
   {
-    path: '/admin/products',
+    path: '/admin/threads',
+    protected: true,
+    exact: true,
+    component: AdminProductPage,
+    roles: [Role.Admin],
+  },
+  {
+    path: '/admin/posts',
     protected: true,
     exact: true,
     component: AdminProductPage,
