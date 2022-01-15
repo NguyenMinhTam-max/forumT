@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 			left: 0,
 			width: "100%",
 			height: "100%",
-			backgroundColor: "rgba(0, 0, 0, 0.3)",
+			backgroundColor: "rgba(0, 144, 0, 0.1)",
 		},
 		"&:after": {
 			content: "''",
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 			/* dot circle */
 			boxShadow:
-				"rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0",
+			"rgba(0, 7, 7, 1) 5em 0 0 0, rgba(0, 7, 7, 1) 5em 5em 0 0, rgba(0, 7, 7, 1) 0 5em 0 0, rgba(0, 7, 7, 1) -5em 5em 0 0, rgba(0, 7, 7, 1) -5em 0 0 0, rgba(0, 7, 7, 1) -5em -5em 0 0, rgba(0, 7, 7, 1) 0 -5em 0 0, rgba(0, 7, 7, 1) 5em -5em 0 0",
 		},
 	},
 

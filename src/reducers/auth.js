@@ -136,6 +136,7 @@ const authSlice = createSlice({
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('user', JSON.stringify(user));
+        alert(JSON.stringify(user));
       }
     },
     [register.pending]: (state) => {
