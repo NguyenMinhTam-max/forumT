@@ -260,50 +260,22 @@ function Header({ showMenu }) {
 	const domain = window.location.origin;
 	return (
 		<>
-			<Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-				<Container>
-					<Navbar.Brand href="/">
-						<FcShop className="iconhome" /> Auction Online</Navbar.Brand>
-					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			<Navbar collapseOnSelect expand="lg"  style= {{background:"#38761D"}} variant="dark">
+				<Container >
+				<Navbar.Brand href="#" style={{width:"50px", height:"50px", background:"#38761D"}}>
+					 <img src="img/HomeIcon.png" style={{width:"100%", height:"100%", background:"#38761D"}} alt="BigCo Inc. logo"/>ForumsT</Navbar.Brand>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav className="me-auto">
-							<NavDropdown title="Chuyên mục" id="collasible-nav-dropdown" menuVariant="dark">
-								{homeCatData.paginationlist?.length > 0 &&		//want to use function of react, need to add "?"
-									homeCatData.paginationlist.map((cat, index) => (
-										<CategoryItem
-											key={index}
-											id={cat.cateId}
-											title={cat.cateName}
-											items={cat.subCategories} //pass data between 2 components
-										/>
-									))}
-
-							</NavDropdown>
+							
 						</Nav>
-						<Form className="d-flex"  >
-							<FormControl
-								type="search"
-								placeholder="Search"
-								className="mr-2"
-								aria-label="Search"
-								onChange={searchKeyChangeHandler}
-							/>
-							<Button
-								variant="dark"
-								type="submit"
-								onClick={searchSubmitHandler}
-							>
-								Search
-							</Button>
-						</Form>
+						
 						<Nav>
 							<NavDropdown title={<div style={{ display: "inline-block" }}><Person style={{ color: 'white' }} /></div>} id="collasible-nav-dropdown-2">
 								{user != null && isAuthenticated && (
 									<>
 										<NavDropdown.Item href={domain + '/profile'} >Trang cá nhân</NavDropdown.Item>
-										{(user.role === Role.Seller) && (
-											<NavDropdown.Item href={domain + '/product-mgt'} >Quản lý sản phẩm</NavDropdown.Item>
-										)}
+									
 									</>
 								)}
 								{(user == null || !isAuthenticated) && (

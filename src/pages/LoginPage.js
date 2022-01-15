@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginBottom: 25,
+    color : "#38761D",
+    marginLeft:90,
     [theme.breakpoints.down('sm')]: {
       fontSize: 25,
     },
