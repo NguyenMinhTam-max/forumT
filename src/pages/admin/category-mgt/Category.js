@@ -321,8 +321,7 @@ const CategoryManager = (props) => {//the first character of function always in 
             <TableHead>
               <TableRow className={classes.tableHead}>
                 <TableCell align="center">#</TableCell>
-                <TableCell align="center" style={{ width: "30%" }}>Tên chuyên mục</TableCell>
-                <TableCell align="center">Ngày tạo</TableCell>
+                <TableCell align="center" style={{ width: "40%" }}>Tên chuyên mục</TableCell>
                 <TableCell align="center">Lần cuối sửa</TableCell>
                 <TableCell align="center">Thao tác</TableCell>
               </TableRow>
@@ -335,10 +334,9 @@ const CategoryManager = (props) => {//the first character of function always in 
                   <TableBody>
                     {CategoryList?.map((row, index) => (
                       <TableRow key={index}>
-                        <TableCell component="th" scope="row" align="center"> {index + 1 + (page - 1) * 10} </TableCell>
-                        <TableCell align="center" style={{ width: "60%" }}>{row.cate_name}</TableCell>
-                        <TableCell align="center">{row.cate_created_date}</TableCell>
-                        <TableCell align="center">{row.cate_updated_date == null ? "Không có thông tin!" : row.cate_updated_date}</TableCell>
+                        <TableCell component="th" scope="row" align="center" style={{ width: "10%" }}> {index + 1 + (page - 1) * 10} </TableCell>
+                        <TableCell align="center" style={{ width: "40%" }}>{row.cate_name}</TableCell>
+                        <TableCell align="center" style={{ width: "20%" }}>{row.cate_updated_date == null ? "Không có thông tin!" : row.cate_updated_date}</TableCell>
                         <TableCell align="center">
                           <Button
                             variant="outlined"

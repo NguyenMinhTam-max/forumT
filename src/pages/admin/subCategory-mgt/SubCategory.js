@@ -406,11 +406,10 @@ const CategoryManager = (props) => {//the first character of function always in 
               <Table aria-label="a dense table">
                 <TableHead>
                   <TableRow className={classes.tableHead}>
-                    <TableCell align="center">#</TableCell>
-                    <TableCell align="center" style={{ width: "30%" }}>Tên chuyên mục con</TableCell>
-                    <TableCell align="center">Ngày tạo</TableCell>
-                    <TableCell align="center">Lần cuối sửa</TableCell>
-                    <TableCell align="center">Thao tác</TableCell>
+                    <TableCell align="center" style={{ width: "10%" }}>#</TableCell>
+                    <TableCell align="center" style={{ width: "40%" }}>Tên chuyên mục con</TableCell>
+                    <TableCell align="center" style={{ width: "20%" }}>Ngày tạo</TableCell>
+                    <TableCell align="center" style={{ width: "40%" }}>Thao tác</TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -421,8 +420,7 @@ const CategoryManager = (props) => {//the first character of function always in 
                         {subCat?.map((row, index) => (
                           <TableRow key={index}>
                             <TableCell component="th" scope="row" align="center"> {index + 1 + (page - 1) * 10} </TableCell>
-                            <TableCell align="center" style={{ width: "60%" }}>{row.cate_name}</TableCell>
-                            <TableCell align="center">{row.cate_created_date}</TableCell>
+                            <TableCell align="center" style={{ width: "40%" }}>{row.cate_name}</TableCell>
                             <TableCell align="center">{row.cate_updated_date == null ? "Không có thông tin!" : row.cate_updated_date}</TableCell>
                             <TableCell align="center">
                               <Button
