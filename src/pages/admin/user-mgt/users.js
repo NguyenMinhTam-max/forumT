@@ -361,7 +361,7 @@ const UserManager = (props) => {
 
       <div className={classes.section}>
         <Typography variant="h5" className={classes.title}>
-          Quản Lý Người Dùng ({filter === Role.Admin ? 'Admin' : filter === Role.Mod ? 'User' : 'Mod'})
+          Quản Lý Người Dùng ({filter === Role.Admin ? 'Admin' : filter === Role.Mod ? 'Mod' : 'User'})
         </Typography>
         <div className={classes.filter}>
           <div className={classes.search}>
