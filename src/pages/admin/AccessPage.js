@@ -4,9 +4,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useParams } from "react-router-dom";
 import {accessWeb} from "../../reducers/auth";
 import {Redirect} from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 function Access() {
- 
+    const history = useHistory();
     const dispatch = useDispatch();
     
     const {atkP,accidP, rftP } = useParams();
@@ -25,9 +25,8 @@ function Access() {
     useEffect(() => {
         accessHandler();
     }, [accessHandler]);
-
-
     return <Redirect to='/admin' />;
+
 }
 
 export default Access;

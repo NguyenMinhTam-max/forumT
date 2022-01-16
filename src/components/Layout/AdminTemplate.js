@@ -6,6 +6,7 @@ import SideBar from '../SideBar/SideBar';
 import AdminInfomation from '../UserInfomation/AdminInfomation';
 import Footer from './Footer';
 import { makeStyles } from '@material-ui/core';
+import {useSelector} from 'react-redux';
 
 const options = [
   {
@@ -95,9 +96,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const user = JSON.parse(localStorage.getItem('user'));
+//const user = JSON.parse(localStorage.getItem('user'));
+
 export const AdminTemplate = ({ children }) => {
   const classes = useStyles();
+  const user = useSelector((state) => state.auth.user);
   return (
     <>
       <HeaderAdmin showMenu />

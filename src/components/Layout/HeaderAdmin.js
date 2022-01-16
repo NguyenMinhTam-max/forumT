@@ -213,7 +213,7 @@ const HeaderAdmin = ({ showMenu }) => {
 			<Navbar collapseOnSelect expand="lg" style= {{background:"#38761D"}} variant="dark">
 				{/* <Container> */}
 				<Navbar.Brand href="#" style={{width:"50px", height:"50px", background:"#38761D"}}>
-					 <img src="img/HomeIcon.png" style={{width:"100%", height:"100%", background:"#38761D"}} alt="BigCo Inc. logo"/>ForumsT</Navbar.Brand>
+					 <img src="/img/HomeIcon.png" style={{width:"100%", height:"100%", background:"#38761D"}} alt="HOME. logo"/>ForumsT</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto" disabled>

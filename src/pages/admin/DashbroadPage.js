@@ -60,6 +60,7 @@ function Home() {
     // const location = useLocation();
     const admin = useSelector((state) => state.auth);
     if (admin.user == null) return <Redirect to='/login' />;
+
     return (
         <></>
     );

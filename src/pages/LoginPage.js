@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login as userLogin } from '../reducers/auth';
 import { FormHelperText } from '@material-ui/core';
 import { Role } from '../config/role';
-
+import Loading from "../components/Loading/Loading"
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
@@ -134,7 +134,7 @@ const LoginPage = () => {
 
   if (isAuthenticated) {
     if(user.role === Role.Admin){
-      return <Redirect to='/admin' />;
+      return <Redirect to='/admin/categories' />;
     } else {
       return <Redirect to={location.state?.from || '/'} />;
     }
@@ -142,7 +142,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className={classes.root} style ={{background:"lightgrey"}}>
+      <Loading/>
+      {/* <div className={classes.root} style ={{background:"lightgrey"}}>
         <Header />
         <div className={classes.content} >
           <Container>
@@ -208,7 +209,8 @@ const LoginPage = () => {
           </Container>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
+      
     </>
   );
 };
