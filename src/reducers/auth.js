@@ -128,7 +128,6 @@ const authSlice = createSlice({
       state.loading = false;
  
       if (user.accStatus === 0) {
-        alert(JSON.stringify(user));
         state.user = user;
         state.refreshToken = refreshToken;
         state.accessToken = accessToken;

@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 85,
     },
   },
-  maginn:{
+  magin:{
     marginTop:50
   }
 }));
