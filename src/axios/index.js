@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { history } from '../helpers';
 
-const baseURL = process.env.APP_BASE_URL || 'http://localhost:3000';
+const baseURL = 'https://forumwebapp1.herokuapp.com/';
 console.log("tam log " + baseURL)
 axios.defaults.baseURL = baseURL;
 
