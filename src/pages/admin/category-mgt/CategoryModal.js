@@ -1,4 +1,4 @@
-import { makeStyles, TextField, Typography, FormControl, Modal, Button } from '@material-ui/core';
+import { makeStyles, TextField, Typography, FormControl, Modal, Button, Snackbar } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, updateCategory } from '../../../reducers/admin/category';
@@ -58,6 +58,8 @@ const CategoryModal = ({ CatItem, action, reloadTable, isOpenModal, closeModalHa
   const [showFailed, setShowFailed] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [text, setText] = useState('');
+  const vertical = 'top';
+  const horizontal = 'right';
 
 
   const catNameChangeHandler = (e) => {
@@ -97,6 +99,14 @@ const CategoryModal = ({ CatItem, action, reloadTable, isOpenModal, closeModalHa
       }
     }
   };
+  useEffect(() => {
+    if (action === "INSERT") {
+      setCatName('');
+    }
+    else{
+      setCatName(CatItem?.cate_name || '');
+    }
+  }, [CatItem, action]);
 
   return (
     <Modal
@@ -111,12 +121,16 @@ const CategoryModal = ({ CatItem, action, reloadTable, isOpenModal, closeModalHa
           className={classes.modalTitle}>
           {action == "INSERT" ? 'Thêm chuyên mục mới' : 'Cập nhật chuyên mục'}
         </Typography>
-        <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
-          <Alert.Heading>{text}</Alert.Heading>
-        </Alert>
-        <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-          <Alert.Heading>{text}</Alert.Heading>
-        </Alert>
+        <Snackbar anchorOrigin={{ vertical, horizontal }} open={showSuccess} autoHideDuration={3000} onClose={() => setShowSuccess(false)}>
+          <Alert onClose={() => setShowSuccess(false)} variant="success" sx={{ width: '100%' }}>
+          {text}
+          </Alert>
+        </Snackbar>
+        <Snackbar anchorOrigin={{ vertical, horizontal }} open={showFailed} autoHideDuration={3000} onClose={() => setShowFailed(false)}>
+          <Alert onClose={() => setShowFailed(false)} sx={{ width: '100%' }} variant="danger">
+          {text}
+          </Alert>
+        </Snackbar>
         <form noValidate autoComplete="off">
           <FormControl className={classes.form} fullWidth size="small">
             <TextField

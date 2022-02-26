@@ -10,7 +10,8 @@ import {
   TableRow,
   Paper,
   Typography,
-  Button
+  Button,
+  Snackbar
 } from '@material-ui/core';
 import { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-bootstrap';
@@ -167,6 +168,8 @@ const CategoryManager = (props) => {//the first character of function always in 
   const [text, setText] = useState('');
   const [action, setAction] = useState('INSERT');
   const [catItem, setCatItem] = useState({});
+  const vertical = 'top';
+  const horizontal = 'right';
 
   const reloadData = () => {
     setPage(1);
@@ -175,6 +178,7 @@ const CategoryManager = (props) => {//the first character of function always in 
 
   const openAddModalHandler = () => {
     setAction('INSERT');
+    setCatItem(null);
     setOpenAddOrUpdateModal(true);
     setOpenDeleteModal(false);
   };
@@ -310,12 +314,23 @@ const CategoryManager = (props) => {//the first character of function always in 
       </div>
 
       <div className={classes.bodytable}>
-        <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
+        {/* <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
           <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
         </Alert>
         <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
           <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
-        </Alert>
+        </Alert> */}
+
+        <Snackbar anchorOrigin={{ vertical, horizontal }} open={showSuccess} autoHideDuration={3000} onClose={() => setShowSuccess(false)}>
+          <Alert onClose={() => setShowSuccess(false)} variant="success" sx={{ width: '100%' }}>
+          {text}
+          </Alert>
+        </Snackbar>
+        <Snackbar anchorOrigin={{ vertical, horizontal }} open={showFailed} autoHideDuration={3000} onClose={() => setShowFailed(false)}>
+          <Alert onClose={() => setShowFailed(false)} sx={{ width: '100%' }} variant="danger">
+          {text}
+          </Alert>
+        </Snackbar>
         <TableContainer component={Paper}>
           <Table aria-label="a dense table">
             <TableHead>

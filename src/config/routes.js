@@ -15,7 +15,7 @@ const ProductCategory = lazy(() => import('../pages/ProductCategory'));
 
 const DashbroadPage = lazy(() => import('../pages/admin/DashbroadPage'));
 const UserPage = lazy(() => import('../pages/admin/user-mgt/users'));
-const AdminProductPage = lazy(() => import('../pages/admin/product-mgt/Product'));
+const AdminThreadPage = lazy(() => import('../pages/admin/product-mgt/Product'));
 const AdminCategoryPage = lazy(() => import('../pages/admin/category-mgt/Category'));
 const AdminSubCategoryPage = lazy(() => import('../pages/admin/subCategory-mgt/SubCategory'));
 
@@ -172,14 +172,14 @@ export const adminRoutes = [
     path: '/admin/threads',
     protected: true,
     exact: true,
-    component: AdminProductPage,
+    component: AdminThreadPage,
     roles: [Role.Admin],
   },
   {
     path: '/admin/posts',
     protected: true,
     exact: true,
-    component: AdminProductPage,
+    component: AdminThreadPage,
     roles: [Role.Admin],
   },
   {

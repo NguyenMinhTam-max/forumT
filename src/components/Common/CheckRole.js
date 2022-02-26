@@ -8,7 +8,7 @@ export const CheckRole = (props) => {
   const { roles } = props;
 
   if (roles && isAuthenticated && roles.indexOf(user.role) === -1) {
-    if (user.role === Role.Admin) {
+    if (user.role === Role.Admin || user.role === Role.Mod) {
       return (
         <Redirect
           to={{

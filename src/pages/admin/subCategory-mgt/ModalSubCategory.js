@@ -11,7 +11,8 @@ import {
   Box,
   Modal,
   Fade,
-  Backdrop
+  Backdrop,
+  Snackbar
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -80,12 +81,9 @@ const ModalSubCategory = ({ catParentID, subCatInfo, action, catParentList, relo
   const [showFailed, setShowFailed] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [text, setText] = useState('');
-  useEffect(() => {
-    if (action === 'INSERT') {
-      setSubCategoryName('');
-    }
-    setCatParent(catParentID);
-  }, [action]);
+  const vertical = 'top';
+  const horizontal = 'right';
+
   const subCatNameChangeHandler = (e) => {
     //get value when the input changed, and set into subcat name
     setSubCategoryName(e.target.value);
@@ -138,6 +136,17 @@ const ModalSubCategory = ({ catParentID, subCatInfo, action, catParentList, relo
     }
   };
 
+  useEffect(() => {
+    if (action === "INSERT") {
+      setSubCategoryName('');
+      setCatParent('');
+    }
+    else{
+      setSubCategoryName(subCatInfo?.cate_name || '');
+      setCatParent(catParentID);
+    }
+  }, [subCatInfo, catParentID, action]);
+
   return (
     <>
       <Modal
@@ -153,12 +162,16 @@ const ModalSubCategory = ({ catParentID, subCatInfo, action, catParentList, relo
               className={classes.modalTitle}>
               {action == 'INSERT' ? 'Thêm chuyên mục con' : 'Cập nhật chuyên mục con'}
             </Typography>
-            <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
-              <Alert.Heading>{text}</Alert.Heading>
-            </Alert>
-            <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-              <Alert.Heading>{text}</Alert.Heading>
-            </Alert>
+            <Snackbar anchorOrigin={{ vertical, horizontal }} open={showSuccess} autoHideDuration={3000} onClose={() => setShowSuccess(false)}>
+              <Alert onClose={() => setShowSuccess(false)} variant="success" sx={{ width: '100%' }}>
+                {text}
+              </Alert>
+            </Snackbar>
+            <Snackbar anchorOrigin={{ vertical, horizontal }} open={showFailed} autoHideDuration={3000} onClose={() => setShowFailed(false)}>
+              <Alert onClose={() => setShowFailed(false)} sx={{ width: '100%' }} variant="danger">
+                {text}
+              </Alert>
+            </Snackbar>
             <FormControl className={classes.form} fullWidth>
 
 

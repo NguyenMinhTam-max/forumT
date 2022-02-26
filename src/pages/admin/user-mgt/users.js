@@ -11,6 +11,7 @@ import {
   Paper,
   Typography,
   Button,
+  Snackbar
 } from '@material-ui/core';
 import { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-bootstrap';
@@ -22,7 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Add } from '@material-ui/icons';
-import { getUserList, deleteUser, acceptSel, rejectSel } from '../../../reducers/admin/user';
+import { getUserList, deleteUser, upgradeMod, downgradeUser } from '../../../reducers/admin/user';
 import AddProduct from './AddProduct';
 import UpdateProduct from './UpdateProduct';
 import TableError from '../../../components/Table/TableError';
@@ -174,11 +175,14 @@ const UserManager = (props) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [text, setText] = useState('');
 
+  const vertical = 'top';
+  const horizontal = 'right';
+
   const openAddModalHandler = () => {
 
   };
 
-  const openRejectSelModalHandler = (id) => {
+  const opendowngradeUserModalHandler = (id) => {
     setSelectedId(id);
     setOpenAddModal(false);
     setOpenUpdateModal(false);
@@ -205,7 +209,7 @@ const UserManager = (props) => {
     setOpenRejectModal(false);
   };
 
-  const openAcceptSelModalHandler = (id) => {
+  const openupgradeModModalHandler = (id) => {
     setSelectedId(id);
     setOpenAddModal(false);
     setOpenUpdateModal(false);
@@ -248,10 +252,10 @@ const UserManager = (props) => {
     closeModalHandler();
   };
 
-  const acceptSelModalHandler = async () => {
+  const upgradeModModalHandler = async () => {
     if (!selectedId) return;
     try {
-      await dispatch(acceptSel(selectedId)).unwrap();
+      await dispatch(upgradeMod(selectedId)).unwrap();
       const limit = 10;
       const role = filter;
       const response = await dispatch(getUserList({ page, limit, role })).unwrap();
@@ -265,10 +269,10 @@ const UserManager = (props) => {
     closeModalHandler();
   }
 
-  const rejectSelModalHandler = async () => {
+  const downgradeUserModalHandler = async () => {
     if (!selectedId) return;
     try {
-      await dispatch(rejectSel(selectedId)).unwrap();
+      await dispatch(downgradeUser(selectedId)).unwrap();
       const limit = 10;
       const role = filter;
       const response = await dispatch(getUserList({ page, limit, role })).unwrap();
@@ -348,13 +352,13 @@ const UserManager = (props) => {
             title="Đồng ý yêu cầu nâng cấp Mod?"
             isOpen={openAcceptModal}
             onClose={closeModalHandler}
-            onConfirm={acceptSelModalHandler}
+            onConfirm={upgradeModModalHandler}
           />
           <ModalConfirm
             title="Đồng ý hạ cấp thành user?"
             isOpen={openRejectModal}
             onClose={closeModalHandler}
-            onConfirm={rejectSelModalHandler}
+            onConfirm={downgradeUserModalHandler}
           />
         </Container>
       </div>
@@ -374,7 +378,8 @@ const UserManager = (props) => {
                 variant="contained"
                 color="primary"
                 className={classes.addButton}
-                onClick={openAddModalHandler}>
+                onClick={openAddModalHandler}
+                hidden={true}>
                 Mới
               </Button>
             </div>
@@ -383,12 +388,16 @@ const UserManager = (props) => {
       </div>
 
       <div className={classes.bodytable}>
-        <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
-          <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
-        </Alert>
-        <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-          <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
-        </Alert>
+      <Snackbar anchorOrigin={{ vertical, horizontal }} open={showSuccess} autoHideDuration={3000} onClose={() => setShowSuccess(false)}>
+          <Alert onClose={() => setShowSuccess(false)} variant="success" sx={{ width: '100%' }}>
+          {text}
+          </Alert>
+        </Snackbar>
+        <Snackbar anchorOrigin={{ vertical, horizontal }} open={showFailed} autoHideDuration={3000} onClose={() => setShowFailed(false)}>
+          <Alert onClose={() => setShowFailed(false)} sx={{ width: '100%' }} variant="danger">
+          {text}
+          </Alert>
+        </Snackbar>
         <TableContainer component={Paper}>
           <Table aria-label="a dense table">
             <TableHead>
@@ -448,7 +457,7 @@ const UserManager = (props) => {
                                   <Button
                                     variant="outlined"
                                     startIcon={<CheckBoxIcon style={{ align: "center", marginLeft: 10 }} />}
-                                    onClick={() => openAcceptSelModalHandler(row.accId)}
+                                    onClick={() => openupgradeModModalHandler(row.accId)}
                                     fontSize="small"
                                     style={{ width: '40px', marginLeft: 5, cursor: 'pointer', color: 'green', borderColor: 'green', "& :hover": { backgroundColor: "red" } }}
                                   // marginBottom={1}
@@ -471,7 +480,7 @@ const UserManager = (props) => {
                                 <Button
                                   variant="outlined"
                                   startIcon={<CheckBoxIcon style={{ align: "center", marginLeft: 10 }} />}
-                                  onClick={() => openRejectSelModalHandler(row.accId)}
+                                  onClick={() => opendowngradeUserModalHandler(row.accId)}
                                   fontSize="small"
                                   style={{ width: '40px', marginLeft: 5, cursor: 'pointer', color: 'green', borderColor: 'green', "& :hover": { backgroundColor: "red" } }}
                                 // marginBottom={1}
@@ -495,6 +504,7 @@ const UserManager = (props) => {
                             style={{ width: '40px', marginLeft: 5, background: "#0F881B" }}
                             fontSize="small"
                             onClick={() => openUpdateModalHandler(row)}
+                            hidden={true}
                           >
                           </Button>
                           <Button

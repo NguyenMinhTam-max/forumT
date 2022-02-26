@@ -193,6 +193,7 @@ function Header({ showMenu }) {
 	//state.homeCategory : data from homeCategory reducer
 	//state.homeCategory.data: data from data variable of homeCategory reducer
 	const homeCatData = useSelector((state) => state.homeCategory.data)// get data from local store, can get at all pages, 
+	console.log(homeCatData)
 	const SocketInNotify = useSelector((state) => state.unauthorizedProduct.SocketInNotify);
 	const [openModalNotify, setOpenModalNotify] = useState(false);//initialize data for local variable of this page
 	const [searchKey, setSearchKey] = useState('');

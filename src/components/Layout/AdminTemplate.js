@@ -33,11 +33,6 @@ const options = [
         title: 'Chủ đề',
         link: '/admin/threads',
       },
-      {
-        icon: AddComment,
-        title: 'Bài viết',
-        link: '/admin/posts',
-      },
     ],
   },
   {
@@ -51,22 +46,18 @@ const options = [
         link: '/admin/user/admins',
       },
       {
-        icon: Person,
-        title: 'User',
-        link: '/admin/user/users',
-      },
-      {
         icon: LocalLibrary,
         title: 'Mod',
         link: '/admin/user/mods',
       },
+      {
+        icon: Person,
+        title: 'User',
+        link: '/admin/user/users',
+      },
+      
     ],
   },
-  // {
-  //   icon: AttachMoney,
-  //   title: 'Orders',
-  //   link: '/admin/orders',
-  // },
 ];
 
 const useStyles = makeStyles((theme) => ({

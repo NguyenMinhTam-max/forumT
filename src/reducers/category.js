@@ -3,7 +3,7 @@ import categoryApi from '../apis/category';
 import { getResponseError } from '../helpers';
 
 const initialState = {
-  data: [],
+  data: [],// initial attribute of object
   loading: false,
 };
 
@@ -19,7 +19,7 @@ export const getListCategory = createAsyncThunk(
 });
 
 const adminCategorySlice = createSlice({
-  name: 'category',
+  name: 'category',// name of data in store, call by thread page with variable const categories = useSelector((state) => state.category.dataResult);
   initialState,
   reducers: {},
   extraReducers: {
@@ -32,7 +32,7 @@ const adminCategorySlice = createSlice({
     [getListCategory.fulfilled]: (state, action) => {
       state.loading = false;
       const {paginationResult} = action.payload;
-      state.data = paginationResult
+      state.dataResult = paginationResult // dataResult is custom attribute using to store data of pagination result
     },
   },
 });

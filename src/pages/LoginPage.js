@@ -134,7 +134,7 @@ const LoginPage = () => {
 
   if (isAuthenticated) {
     if(user.role === Role.Admin){
-      return <Redirect to='/admin/categories' />;
+      return <Redirect to='/admin' />;
     } else {
       return <Redirect to={location.state?.from || '/'} />;
     }
@@ -142,8 +142,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <Loading/>
-      {/* <div className={classes.root} style ={{background:"lightgrey"}}>
+      {/* <Loading/> */}
+      <div className={classes.root} style ={{background:"lightgrey"}}>
         <Header />
         <div className={classes.content} >
           <Container>
@@ -209,7 +209,7 @@ const LoginPage = () => {
           </Container>
         </div>
       </div>
-      <Footer /> */}
+      <Footer />
       
     </>
   );

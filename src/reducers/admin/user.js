@@ -31,22 +31,22 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
-export const acceptSel = createAsyncThunk(
+export const upgradeMod = createAsyncThunk(
   'user/acceptSel',
   async (accId, { rejectWithValue }) => {
     try {
-      return (await API.acceptSel({accId})).data;
+      return (await API.upgradeMod({accId})).data;
     } catch (error) {
       return rejectWithValue(getResponseError(error));
     }
   }
 );
 
-export const rejectSel = createAsyncThunk(
+export const downgradeUser = createAsyncThunk(
   'user/rejectSel',
   async (accId, { rejectWithValue }) => {
     try {
-      return (await API.rejectSel({accId})).data;
+      return (await API.downgradeUser({accId})).data;
     } catch (error) {
       return rejectWithValue(getResponseError(error));
     }

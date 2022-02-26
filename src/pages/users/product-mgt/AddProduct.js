@@ -196,7 +196,7 @@ const AddProduct = ({ isOpen, onClose, showSuccess, textAlert }) => {
       const limit = 10000;
       await dispatch(getListCategory({page, limit})).unwrap();
     } catch (err) {
-      console.log('🚀 ~ file: Product.js ~ line 166 ~ getListCategoryHandler ~ err', err);
+      console.log('error when getting category', err);
     }
   }, [dispatch]);
 

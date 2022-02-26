@@ -19,7 +19,7 @@ export const ProtectedRoute = (props) => {
 
   if (roles && roles.indexOf(user.role) === -1) {
     console.log(user)
-    if (user.role === Role.Admin) {
+    if (user.role === Role.Admin || user.role === Role.Mod) {
       return (
         <Redirect
           to={{

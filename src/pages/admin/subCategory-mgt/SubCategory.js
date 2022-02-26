@@ -18,6 +18,7 @@ import {
   Fade,
   Backdrop,
   Button,
+  Snackbar
 } from '@material-ui/core';
 import { Alert } from 'react-bootstrap';
 import { useCallback, useEffect, useState } from 'react';
@@ -204,6 +205,8 @@ const CategoryManager = (props) => {//the first character of function always in 
   const [showSuccess, setShowSuccess] = useState(false);
   const [text, setText] = useState('');
   const [action, setAction] = useState('INSERT');
+  const vertical = 'top';
+  const horizontal = 'right';
 
 
 
@@ -304,6 +307,7 @@ const CategoryManager = (props) => {//the first character of function always in 
 
   const openAddModalHandler = () => {
     setAction('INSERT');
+    setSubCatInfo(null);
     setOpenAddOrUpdateModal(true);
     setOpenDeleteModal(false);
   };
@@ -326,6 +330,8 @@ const CategoryManager = (props) => {//the first character of function always in 
   const closeModalHandler = () => {
     setOpenAddOrUpdateModal(false);
     setOpenDeleteModal(false);
+    setShowSuccess(false);
+    setShowFailed(false);
 
   };
   return (
@@ -396,12 +402,16 @@ const CategoryManager = (props) => {//the first character of function always in 
         </div>
         <div>
           <div className={classes.bodytable}>
-            <Alert variant="danger" show={showFailed} onClose={() => setShowFailed(false)} dismissible>
-              <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
-            </Alert>
-            <Alert variant="success" show={showSuccess} onClose={() => setShowSuccess(false)} dismissible>
-              <Alert.Heading style={{ textAlign: "center" }}>{text}</Alert.Heading>
-            </Alert>
+            <Snackbar anchorOrigin={{ vertical, horizontal }} open={showSuccess} autoHideDuration={3000} onClose={() => setShowSuccess(false)}>
+              <Alert onClose={() => setShowSuccess(false)} variant="success" sx={{ width: '100%' }}>
+                {text}
+              </Alert>
+            </Snackbar>
+            <Snackbar anchorOrigin={{ vertical, horizontal }} open={showFailed} autoHideDuration={3000} onClose={() => setShowFailed(false)}>
+              <Alert onClose={() => setShowFailed(false)} sx={{ width: '100%' }} variant="danger">
+                {text}
+              </Alert>
+            </Snackbar>
             <TableContainer component={Paper}>
               <Table aria-label="a dense table">
                 <TableHead>
