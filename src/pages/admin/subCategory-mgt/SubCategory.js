@@ -176,8 +176,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHead: {
     fontWeight: 'bold',
-    color: 'red',
-    background:"#F4FFE7"
+    background: "#2C553C",
   },
   colorBackground:{
     background:"#F4FFE7"
@@ -359,7 +358,7 @@ const CategoryManager = (props) => {//the first character of function always in 
 
 
         <div className={classes.section}>
-          <Typography variant="h5" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             Quản lý chuyên mục con
           </Typography>
 
@@ -416,10 +415,10 @@ const CategoryManager = (props) => {//the first character of function always in 
               <Table aria-label="a dense table">
                 <TableHead>
                   <TableRow className={classes.tableHead}>
-                    <TableCell align="center" style={{ width: "10%" }}>#</TableCell>
-                    <TableCell align="center" style={{ width: "40%" }}>Tên chuyên mục con</TableCell>
-                    <TableCell align="center" style={{ width: "20%" }}>Ngày tạo</TableCell>
-                    <TableCell align="center" style={{ width: "40%" }}>Thao tác</TableCell>
+                    <TableCell align="center" style={{ width: "10%", color:"white" }}>#</TableCell>
+                    <TableCell align="center" style={{ width: "40%", color:"white" }} >Tên chuyên mục con</TableCell>
+                    <TableCell align="center" style={{ width: "20%", color:"white" }} >Ngày tạo</TableCell>
+                    <TableCell align="center" style={{ width: "40%", color:"white" }} >Thao tác</TableCell>
                   </TableRow>
                 </TableHead>
 

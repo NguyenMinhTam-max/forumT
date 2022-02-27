@@ -25,7 +25,7 @@ import { deleteAuctionProduct, getListThreadByCategory } from '../../../reducers
 import UpdateThread from './UpdateThread';
 import TableError from '../../../components/Table/TableError';
 import TableLoading from '../../../components/Table/TableLoading';
-import ModalConfirmDelete from '../../../components/Modal/ModalConfirmDelete';
+import ThreadModalConfirmDeleteWithReason from '../../../components/Modal/ThreadModalConfirmDeleteWithReason';
 import { toast } from 'react-toastify';
 import { getListCategory } from '../../../reducers/category';
 const useStyles = makeStyles((theme) => ({
@@ -142,8 +142,8 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHead: {
     fontWeight: 'bold',
-    color: 'red',
-    background: "#F4FFE7"
+    background: "#2C553C",
+    
   },
   colorBackground: {
     background: "#F4FFE7"
@@ -314,16 +314,18 @@ const ProductManager = (props) => {
             showSuccess={setShowSuccess}
             textAlert={setText}
           />
-          <ModalConfirmDelete
-            title="Xoá sản phẩm"
+
+          <ThreadModalConfirmDeleteWithReason
+            title="Khóa chủ đề"
             isOpen={openDeleteModal}
             onClose={closeModalHandler}
-            onConfirm={productDeleteHandler}
+            //onConfirm={productDeleteHandler}
+            threadID = {selectedId}
           />
         </Container>
       </div>
       <div className={classes.section}>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h4" className={classes.title}>
           Quản Lý Chủ Đề Bài Viết
         </Typography>
         {/* <div className={classes.filter}>
@@ -367,15 +369,15 @@ const ProductManager = (props) => {
         </Alert>
         <TableContainer component={Paper}>
           
-          <Table aria-label="a dense table">
-            <TableHead>
-              <TableRow className={classes.tableHead}>
-                <TableCell>STT</TableCell>
-                <TableCell>Tên chủ đề</TableCell>
-                <TableCell>Hình ảnh chủ đề</TableCell>
-                <TableCell>Người tạo</TableCell>
-                <TableCell>Ngày tạo</TableCell>
-                <TableCell align="center">Thao tác</TableCell>
+          <Table aria-label="a dense table" >
+            <TableHead >
+              <TableRow className={classes.tableHead} >
+                <TableCell style = {{color:"white"}}>STT</TableCell>
+                <TableCell style = {{color:"white"}}>Tên chủ đề</TableCell>
+                <TableCell style = {{color:"white"}}>Hình ảnh chủ đề</TableCell>
+                <TableCell style = {{color:"white"}}>Người tạo</TableCell>
+                <TableCell style = {{color:"white"}} >Ngày tạo</TableCell>
+                <TableCell align="center" style = {{color:"white"}} >Thao tác</TableCell>
               </TableRow>
             </TableHead>
             {loading ? (<TableLoading />) : error?.length > 0 ?

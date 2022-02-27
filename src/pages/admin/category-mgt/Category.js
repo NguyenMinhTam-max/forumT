@@ -145,8 +145,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHead: {
     fontWeight: 'bold',
-    color: 'red',
-    background:"#F4FFE7"
+    background: "#2C553C",
   },
   colorBackground:{
     background:"#F4FFE7"
@@ -297,7 +296,7 @@ const CategoryManager = (props) => {//the first character of function always in 
       </div>
 
       <div className={classes.section}>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h4" className={classes.title}>
           Quản Lý Chuyên Mục
         </Typography>
         <div className={classes.filter}>
@@ -335,10 +334,10 @@ const CategoryManager = (props) => {//the first character of function always in 
           <Table aria-label="a dense table">
             <TableHead>
               <TableRow className={classes.tableHead}>
-                <TableCell align="center">#</TableCell>
-                <TableCell align="center" style={{ width: "40%" }}>Tên chuyên mục</TableCell>
-                <TableCell align="center">Lần cuối sửa</TableCell>
-                <TableCell align="center">Thao tác</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>#</TableCell>
+                <TableCell align="center" style={{ width: "40%", color:"white" }} >Tên chuyên mục</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Lần cuối sửa</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Thao tác</TableCell>
               </TableRow>
             </TableHead>
             {loading ? (<TableLoading />) : error?.length > 0 ?

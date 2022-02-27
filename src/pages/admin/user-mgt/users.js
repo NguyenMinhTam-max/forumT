@@ -147,8 +147,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHead: {
     fontWeight: 'bold',
-    color: 'red',
-    background: "#F4FFE7"
+    background: "#2C553C",
   },
   colorBackground: {
     background: "#F4FFE7"
@@ -364,7 +363,7 @@ const UserManager = (props) => {
       </div>
 
       <div className={classes.section}>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h4" className={classes.title}>
           Quản Lý Người Dùng ({filter === Role.Admin ? 'Admin' : filter === Role.Mod ? 'Mod' : 'User'})
         </Typography>
         <div className={classes.filter}>
@@ -404,26 +403,26 @@ const UserManager = (props) => {
               <TableRow className={classes.tableHead}>
                 <TableCell align="center">STT</TableCell>
                 {/* <TableCell align="center">ID</TableCell> */}
-                <TableCell align="center">Họ & Tên</TableCell>
-                <TableCell align="center">Ảnh đại diện</TableCell>
-                <TableCell align="center">Email</TableCell>
-                <TableCell align="center">Điện thoại</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Họ & Tên</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Ảnh đại diện</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Email</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Điện thoại</TableCell>
                 {filter === Role.User && (
                   <>
-                    <TableCell align="center">Tổng like</TableCell>
-                    <TableCell align="center">Tổng dislike</TableCell>
-                    <TableCell align="center">Chuyển thành Mod</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Tổng like</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Tổng dislike</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Chuyển thành Mod</TableCell>
                   </>
                 )}
                 {filter === Role.Mod && (
                   <>
-                    <TableCell align="center">Tổng like</TableCell>
-                    <TableCell align="center">Tổng dislike</TableCell>
-                    <TableCell align="center">Chuyển sang User</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Tổng like</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Tổng dislike</TableCell>
+                    <TableCell align="center" style = {{color:"white"}}>Chuyển sang User</TableCell>
                   </>
                 )}
-                <TableCell align="center">Last Modified</TableCell>
-                <TableCell align="center">Options</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Last Modified</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Options</TableCell>
               </TableRow>
             </TableHead>
             {loading ? (<TableLoading />) : error?.length > 0 ?

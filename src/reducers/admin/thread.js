@@ -44,6 +44,18 @@ export const deleteAuctionProduct = createAsyncThunk(
   }
 );
 
+
+export const updateStatus = createAsyncThunk(
+  'thread/updateStatus',
+  async ({threadStatus, threadId}, { rejectWithValue }) => {
+    try {
+      return (await API.deleteAuctionProduct({threadStatus, threadId})).data;
+    } catch (error) {
+      return rejectWithValue(getResponseError(error));
+    }
+  }
+);
+
 //the below function is used to add data to local store, uneccessary to use now
 // const userProductSlice = createSlice({
 //   name: 'product',
