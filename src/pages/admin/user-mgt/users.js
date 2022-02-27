@@ -421,8 +421,8 @@ const UserManager = (props) => {
                     <TableCell align="center" style = {{color:"white"}}>Chuyển sang User</TableCell>
                   </>
                 )}
-                <TableCell align="center" style = {{color:"white"}}>Last Modified</TableCell>
-                <TableCell align="center" style = {{color:"white"}}>Options</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Ngày cập nhật</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>Tùy chọn</TableCell>
               </TableRow>
             </TableHead>
             {loading ? (<TableLoading />) : error?.length > 0 ?
@@ -451,7 +451,6 @@ const UserManager = (props) => {
                             <TableCell align="center">{row?.accLikeUser || 0}</TableCell>
                             <TableCell align="center">{row?.accDisLikeUser || 0}</TableCell>
                             <TableCell align="center">
-                              {row?.accIsUpgrade === 1 && (
                                 <>
                                   <Button
                                     variant="outlined"
@@ -466,7 +465,7 @@ const UserManager = (props) => {
                                   {/* <br></br> */}
 
                                 </>
-                              )}
+                             
                             </TableCell>
                           </>
                         )}
