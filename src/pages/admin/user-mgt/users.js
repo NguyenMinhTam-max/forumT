@@ -401,7 +401,7 @@ const UserManager = (props) => {
           <Table aria-label="a dense table">
             <TableHead>
               <TableRow className={classes.tableHead}>
-                <TableCell align="center">STT</TableCell>
+                <TableCell align="center" style = {{color:"white"}}>STT</TableCell>
                 {/* <TableCell align="center">ID</TableCell> */}
                 <TableCell align="center" style = {{color:"white"}}>Họ & Tên</TableCell>
                 <TableCell align="center" style = {{color:"white"}}>Ảnh đại diện</TableCell>
